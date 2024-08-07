@@ -22,6 +22,8 @@ def print_numbers_in_range():
   for number in range(0, 10):
     print(f"This number is {number}")
 
+print_numbers_in_range()
+
 # `range` more or less creates a list of the numbers from
 # its first parameter to one below its last parameter. So:
 # the numbers 0-9.
