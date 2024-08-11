@@ -26,11 +26,47 @@ from lib.helpers import check_that_these_are_equal
 
 # @TASK: Complete this exercise.
 
-print("")
-print("Function: report_long_words")
+# print("")
+# print("Function: report_long_words")
 
-def report_long_words(words):
-  pass
+def report_long_words():
+  words = ask_for_words()
+  long_words = longer_than_ten_no_hyphen(words)
+  too_long_words = longer_than_fiveteen(words)
+  report = create_report(long_words, too_long_words)
+  return report
+
+def ask_for_words():
+  words = input("Please write 5 different words seperates by a comma: ")
+  word_list = [word.strip() for word in words.split(',')]
+  return word_list
+
+
+def longer_than_ten_no_hyphen(words):
+  long_words = []
+  for word in words:
+    if 10 < len(word) <= 15 and '-' not in word:
+      long_words.append(word)
+  return long_words
+
+
+def longer_than_fiveteen(words):
+  too_long_words = []
+  for word in words:
+    if len(word) > 15 and '-' not in word:
+       too_long_words.append(word[1:15] + "(...)")
+  return too_long_words
+
+
+def create_report(long_words, too_long_words):
+  results = long_words + too_long_words
+  return "These words are quite long: " + ', '.join(results)
+
+
+report = report_long_words()
+
+print(report)
+
 
 check_that_these_are_equal(
   report_long_words([
@@ -62,3 +98,5 @@ check_that_these_are_equal(
 )
 
 # Once you're done, move on to 041_challenge_2_example.py
+
+
