@@ -31,9 +31,10 @@ from lib.helpers import check_that_these_are_equal
 
 def report_long_words():
   words = ask_for_words()
-  long_words = get_words_longer_than_ten_no_hyphen(words)
-  too_long_words = get_words_longer_than_fiveteen(words)
-  report = create_report(long_words, too_long_words)
+  long_words = get_words_longer_than_ten(words)
+  no_hyphen = remove_hyphen(long_words)
+  too_long_words = shorten_words_longer_than_fiveteen(no_hyphen)
+  report = create_report(too_long_words)
   return report
 
 def ask_for_words():
@@ -42,24 +43,32 @@ def ask_for_words():
   return word_list
 
 
-def get_words_longer_than_ten_no_hyphen(words):
+def get_words_longer_than_ten(words):
   long_words = []
   for word in words:
-    if 10 < len(word) <=15 and '-' not in word:
+    if len(word) > 10:
       long_words.append(word)
   return long_words
 
+def remove_hyphen(long_words):
+  no_hyphen = []
+  for long_word in long_words:
+    if '-' not in long_word:
+      no_hyphen.append(long_word)
+  return no_hyphen
 
-def get_words_longer_than_fiveteen(words):
+def shorten_words_longer_than_fiveteen(no_hyphen):
   too_long_words = []
-  for word in words:
-    if len(word) > 15 and '-' not in word:
+  for word in no_hyphen:
+    if len(word) > 15:
        too_long_words.append(word[:15] + "...")
+    else:
+      too_long_words.append(word)
   return too_long_words
 
 
-def create_report(long_words, too_long_words):
-  results = long_words + too_long_words
+def create_report(too_long_words):
+  results = too_long_words
   return "These words are quite long: " + ', '.join(results)
 
 
