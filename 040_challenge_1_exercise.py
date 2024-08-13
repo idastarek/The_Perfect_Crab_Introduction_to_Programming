@@ -53,7 +53,7 @@ def longer_than_ten_no_hyphen(words):
 def longer_than_fiveteen(words):
   too_long_words = []
   for word in words:
-    if len(word) > 15:
+    if len(word) > 15 and '-' not in word:
        too_long_words.append(word[:15] + "(...)")
   return too_long_words
 
