@@ -33,8 +33,8 @@ def report_long_words():
   words = ask_for_words()
   long_words = get_words_longer_than_ten(words)
   no_hyphen = remove_hyphen(long_words)
-  too_long_words = shorten_words_longer_than_fiveteen(no_hyphen)
-  report = create_report(too_long_words)
+  processed_words = shorten_words_longer_than_fiveteen(no_hyphen)
+  report = create_report(processed_words)
   return report
 
 def ask_for_words():
@@ -58,17 +58,17 @@ def remove_hyphen(long_words):
   return no_hyphen
 
 def shorten_words_longer_than_fiveteen(no_hyphen):
-  too_long_words = []
+  processed_words = []
   for word in no_hyphen:
     if len(word) > 15:
-       too_long_words.append(word[:15] + "...")
+       processed_words.append(word[:15] + "...")
     else:
-      too_long_words.append(word)
-  return too_long_words
+      processed_words.append(word)
+  return processed_words
 
 
-def create_report(too_long_words):
-  results = too_long_words
+def create_report(processed_words):
+  results = processed_words
   return "These words are quite long: " + ', '.join(results)
 
 
