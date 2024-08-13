@@ -31,8 +31,8 @@ from lib.helpers import check_that_these_are_equal
 
 def report_long_words():
   words = ask_for_words()
-  long_words = longer_than_ten_no_hyphen(words)
-  too_long_words = longer_than_fiveteen(words)
+  long_words = get_words_longer_than_ten_no_hyphen(words)
+  too_long_words = get_words_longer_than_fiveteen(words)
   report = create_report(long_words, too_long_words)
   return report
 
@@ -42,7 +42,7 @@ def ask_for_words():
   return word_list
 
 
-def longer_than_ten_no_hyphen(words):
+def get_words_longer_than_ten_no_hyphen(words):
   long_words = []
   for word in words:
     if 10 < len(word) <=15 and '-' not in word:
@@ -50,7 +50,7 @@ def longer_than_ten_no_hyphen(words):
   return long_words
 
 
-def longer_than_fiveteen(words):
+def get_words_longer_than_fiveteen(words):
   too_long_words = []
   for word in words:
     if len(word) > 15 and '-' not in word:
